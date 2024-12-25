@@ -35,7 +35,7 @@
 </head>
 
 <body style="background-color:#121214;">
-  @include('master.header')
+  @include('layouts.header')
   @section('support')
   @show
   @include('master.footer')

@@ -11,22 +11,21 @@ class Post extends Model
     protected $table = 'posts';
     public $timestamps = false;
     protected $fillable = [
-    'tentruyen',
-    'anhgioithieu', 
-    'theloai', 
-    'thongtingioithieu', 
-    'gia', 
-    'tacgia', 
-    'nxb', 
-    'category_id'];
+        'tentruyen',
+        'anhgioithieu',
+        'theloai',
+        'thongtingioithieu',
+        'gia',
+        'tacgia',
+        'nxb',
+        'category_id'
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
     public function comments()
-{
-    return $this->hasMany(Comment::class);
-}
-  
-
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

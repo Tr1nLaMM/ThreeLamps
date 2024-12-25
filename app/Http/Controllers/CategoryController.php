@@ -127,9 +127,23 @@ class CategoryController extends Controller
             'posts' => $posts
         ]);
     }
-    public function showCategories()
+    public function showCategory($categoryId)
     {
-        $category = Category::where('name', 'Ngôn Tình')->first(); // Chỉ lấy 1 thể loại "Ngôn Tình"
-        return view('admin.posts.show', compact('cate'));
+        // Find the category by ID
+        $category = Category::find($categoryId);
+
+        // If category not found, redirect or handle the error
+        if (!$category) {
+            return redirect()->route('category.index')->with('error', 'Category not found.');
+        }
+
+        // Get the posts (products) related to this category
+        $posts = Post::where('category_id', $categoryId)->get();
+
+        // Get all categories for the dropdown
+        $categories = Category::all();
+
+        // Pass category and posts to the view
+        return view('category.show', compact('category', 'posts', 'categories'));
     }
 }
