@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
+@section('cart')
 <div class="container">
     <div class="mb-4">
         <a href="{{route('user.home')}}" class="btn btn-primary btn-lg">

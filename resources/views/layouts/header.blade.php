@@ -102,7 +102,6 @@
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route('profile.show') }}">Trang cá nhân</a></li>
                                 <li><a class="dropdown-item" href="{{ route('profile.orders') }}">Đơn hàng đã đặt</a></li>
-                                <!-- Admin specific link -->
                                 @if(Auth::user()->role == 'admin')
                                 <li><a class="dropdown-item" href="{{ route('admin.home') }}">Trang Admin</a></li>
                                 @endif
@@ -119,7 +118,8 @@
                         </li>
                         @else
                         @if (Route::has('login'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng nhập</a></li>
+                        <li class="nav-item"><a class="nav-link login" href="{{ route('register') }}">Đăng ký</a></li>
+                        <li class="nav-item"><a class="nav-link register" href="{{ route('login') }}">Đăng nhập</a></li>
                         @endif
                         @endif
                     </ul>

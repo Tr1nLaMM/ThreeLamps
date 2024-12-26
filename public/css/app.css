@@ -1658,3 +1658,25 @@ body {
     border: solid 2px white;
     border-radius: 5px;
 }
+
+/* Ensure dropdown menu stays within viewport */
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0; /* Align to the right of the trigger element */
+    z-index: 1000; /* Ensure it appears on top */
+    max-width: 300px; /* Limit width */
+    max-height: 300px; /* Limit height */
+    overflow: auto; /* Allow scrolling if the content overflows */
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        max-width: 100%; /* Adjust for smaller screens */
+        left: 0;
+        right: auto;
+    }
+}

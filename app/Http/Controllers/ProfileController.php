@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class ProfileController extends Controller
         // Trả về view với thông tin đơn hàng
         return view('profile.profile', compact('user', 'orders'));
     }
-    public function updateProfile(Request $request)
+    public function update(Request $request)
     {
         $user = auth()->user();
 
@@ -57,4 +58,3 @@ class ProfileController extends Controller
         return view('profile.orderDetails', compact('order'));
     }
 }
-

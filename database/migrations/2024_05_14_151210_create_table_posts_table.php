@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('gia');
             $table->string('tacgia');
             $table->string('nxb');
+            $table->timestamps();
         });
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
+@section('checkout')
 <div class="container">
     <div class="mb-4">
         <a href="{{route('cart.view')}}" class="btn btn-primary btn-lg">

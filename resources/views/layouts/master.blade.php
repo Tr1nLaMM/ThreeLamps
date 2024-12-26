@@ -49,8 +49,34 @@
   @show
   @section('edit')
   @show
+  @section('cart')
+  @show
+  @section('checkout')
+  @show
 
   @include('layouts.footer')
+  <script src="{{ asset('js/jquery.min.js') }}">
+  </script>
+
+  <script src="{{ asset('js/popper.min.js') }}">
+  </script>
+
+  <script src="{{ asset('js/bootstrap.min.js') }}">
+  </script>
+
+
+
+  <script src="{{ asset('js/app.js') }}">
+  </script>
+  <script src="{{ asset('js/common.js') }}"></script>
+
+
+
+  <div id="loadingPage" class="loading-full">
+    <div class="loading-full_icon">
+      <div class="spinner-grow"><span class="visually-hidden">Loading...</span></div>
+    </div>
+  </div>
 </body>
 
 </html>

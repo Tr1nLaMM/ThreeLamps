@@ -30,6 +30,16 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
+        // Kiểm tra nếu trạng thái hiện tại là 'thất bại'
+        if ($order->status === 'thất bại') {
+            return redirect()->route('admin.orders.index')->withErrors('Không thể thay đổi trạng thái của đơn hàng đã thất bại.');
+        }
+
+        // Xác thực dữ liệu đầu vào
+        $request->validate([
+            'status' => 'required|string|in:đang xử lý,xử lý,chờ giao,đang giao,đã đến,hoàn thành,thất bại',
+        ]);
+
         // Cập nhật trạng thái từ request
         $order->status = $request->input('status');
         $order->save();

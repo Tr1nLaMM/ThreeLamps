@@ -95,6 +95,8 @@ Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
     // Hiển thị danh sách đơn hàng
     Route::get('/profile/orders', [ProfileController::class, 'showOrders'])->name('profile.orders');
     // Hiển thị chi tiết đơn hàng

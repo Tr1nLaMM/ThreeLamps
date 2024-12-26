@@ -53,8 +53,8 @@
             <!-- Loop through each category -->
             @foreach($categories as $category)
             <div class="row g-4">
-                <!-- Loop through all posts in each category -->
-                @foreach($category->posts as $post)
+                <!-- Loop through a maximum of 6 posts in each category -->
+                @foreach($category->posts->take(6) as $post)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="card h-100 shadow-sm position-relative custom-card" style="border: none;">
                         <a href="{{ route('detail.show', ['id' => $post->id]) }}" class="text-decoration-none">
@@ -91,7 +91,6 @@
                 @endforeach
             </div>
             @endforeach
-
         </div>
         <div class="row mb-3">
             <div class="head-title-global d-flex justify-content-between align-items-center">
@@ -106,11 +105,16 @@
             </div>
         </div>
         <div class="category-section mb-4">
-            <!-- Loop through each category -->
-            @foreach($categories as $category)
             <div class="row g-4">
-                <!-- Loop through all posts in each category -->
-                @foreach($category->posts as $post)
+                @php
+                // Lấy tất cả các bài viết từ các danh mục và sắp xếp theo ngày tạo mới nhất
+                $latestPosts = $categories->flatMap(function($category) {
+                return $category->posts;
+                })->sortByDesc('created_at')->take(12);
+                @endphp
+
+                <!-- Loop through the 12 latest posts -->
+                @foreach($latestPosts as $post)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="card h-100 shadow-sm position-relative custom-card" style="border: none;">
                         <a href="{{ route('detail.show', ['id' => $post->id]) }}" class="text-decoration-none">
@@ -143,7 +147,6 @@
                 </div>
                 @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 </div>
