@@ -28,27 +28,31 @@ class CheckoutController extends Controller
             'phone' => 'required|numeric',
             'address' => 'required|string|max:255',
         ]);
-
-        // Lấy thông tin giỏ hàng
+    
+        // Lấy thông tin giỏ hàng của người dùng
         $cartItems = CartItem::where('user_id', auth()->id())->with('post')->get();
-
+    
         // Kiểm tra nếu giỏ hàng trống
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart.view')->with('error', 'Giỏ hàng của bạn đang trống!');
         }
-
+    
+        // Tính tổng giá trị đơn hàng
+        $totalAmount = $cartItems->sum(function ($item) {
+            return $item->quantity * $item->post->gia;
+        });
+    
         // Tạo đơn hàng mới
         $order = Order::create([
             'user_id' => auth()->id(),
-            'gia' => $cartItems->sum(function ($item) {
-                return $item->quantity * $item->post->gia;
-            }),
+            'gia' => $totalAmount,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
+            'status' => 'đang xử lý', // Trạng thái mặc định khi mới tạo đơn hàng
         ]);
-
+    
         // Thêm các sản phẩm vào đơn hàng
         foreach ($cartItems as $item) {
             $order->orderItems()->create([
@@ -57,13 +61,13 @@ class CheckoutController extends Controller
                 'gia' => $item->post->gia,
             ]);
         }
-
+    
         // Xóa các sản phẩm trong giỏ hàng sau khi đã đặt hàng
         CartItem::where('user_id', auth()->id())->delete();
-
+    
         // Chuyển hướng đến trang thanh toán thành công
         return redirect()->route('admin.orders.success')->with('success', 'Đặt hàng thành công!');
-    }
+    }    
     public function updateQuantity(Request $request, $itemId)
     {
         $item = CartItem::find($itemId);

@@ -39,51 +39,10 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">Mật khẩu</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="d-flex align-items-center">
-                                        <input type="password" id="password" class="form-control" maxlength="8" placeholder="Enter new password" style="background-color: transparent; border: none; color: white;">
-                                        <button type="button" id="togglePassword" class="btn btn-sm btn-outline-light ms-2">Show</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm-3">
-                                    <p class="mb-0"></p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <button type="button" id="savePassword" class="btn btn-sm btn-outline-light">Lưu thay đổi mật khẩu</button>
-                                </div>
-                            </div>
-
-                            <script>
-                                document.getElementById('togglePassword').addEventListener('click', function() {
-                                    const passwordField = document.getElementById('password');
-                                    const isHidden = passwordField.type === 'password';
-                                    passwordField.type = isHidden ? 'text' : 'password';
-                                    this.textContent = isHidden ? 'Hide' : 'Show';
-                                });
-
-                                document.getElementById('savePassword').addEventListener('click', function() {
-                                    const passwordField = document.getElementById('password');
-                                    const newPassword = passwordField.value;
-
-                                    if (newPassword.length === 8) {
-                                        // Send new password to server (AJAX or form submission logic goes here)
-                                        alert('Password saved successfully!');
-                                    } else {
-                                        alert('Password must be 8 characters long.');
-                                    }
-                                });
-                            </script>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
                                     <p class="mb-0">SĐT</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" name="phone" class="form-control"
+                                    <input type="text" name="phone" class="text-black mb-0"
                                         value="{{ old('phone', $user->phone) }}">
                                 </div>
                             </div>
@@ -93,12 +52,12 @@
                                     <p class="mb-0">Địa Chỉ</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" name="address" class="form-control"
+                                    <input type="text" name="address" class="text-black mb-0"
                                         value="{{ old('address', $user->address) }}">
                                 </div>
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+                            <div class="text-end"><button type="submit" class="btn btn-primary">Cập nhật thông tin</button></div>
                         </form>
                     </div>
                 </div>

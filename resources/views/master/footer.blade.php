@@ -71,7 +71,6 @@
           </div>
           <div class="col-span-1">
             <div class="flex items-center">
-              <div class="mr-5"><img src="https://waka.vn/images/qr-code-footer.png" alt="" class="cursor-pointer"></div>
               <div><a target="_blank" href="https://apps.apple.com/vn/app/waka-4-0-ebook-audiobook/id929027521?l=vi" class="mb-4-5 block"><img src="https://waka.vn/images/app-store.png" alt="" class="cursor-pointer"></a> <a target="_blank" href="https://play.google.com/store/apps/details?id=anim.dqh.tvw&amp;hl=en&amp;gl=US" class="block"><img src="https://waka.vn/images/google-play.png" alt="" class="cursor-pointer"></a></div>
             </div>
           </div>

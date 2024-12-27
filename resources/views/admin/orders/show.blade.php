@@ -1,14 +1,16 @@
-<!-- resources/views/admin/orders/show.blade.php -->
-
 @extends('admin.app')
 
 @section('content')
 <div class="container">
-    <h2>Order Details</h2>
+    <h2>Chi tiết đơn hàng</h2>
     <div class="mb-3">
-        <h4>Order ID: {{ $order->id }}</h4>
-        <p>User: {{ $order->user->name }}</p>
-        <p>Status:
+        <h4>ID Đơn hàng: {{ $order->id }}</h4>
+        <p>Ngày giờ đặt hàng: {{ $order->created_at->format('d/m/Y H:i') }}</p>
+        <p>Tên khách hàng: {{ $order->user->name }}</p>
+        <p>Email: {{ $order->user->email }}</p> <!-- Hiển thị email -->
+        <p>Số điện thoại: {{ $order->user->phone }}</p> <!-- Hiển thị số điện thoại -->
+        <p>Địa chỉ: {{ $order->user->address }}</p> <!-- Hiển thị địa chỉ -->
+        <p>Trạng thái:
             <span class="badge bg-{{ $order->status == 'pending' ? 'warning' : 'success' }}">
                 {{ ucfirst($order->status) }}
             </span>
@@ -21,10 +23,10 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+                <th>Tổng tiền</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +43,6 @@
         </tbody>
     </table>
 
-    <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary">Back to Orders</a>
+    <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary">Quay lại trang đơn hàng</a>
 </div>
 @endsection
